@@ -1,0 +1,24 @@
+{
+  "name": "injector",
+  "version": "0.0.1",
+  "description": "An injector",
+  "main": "lib/src/index.js",
+  "dependencies": {
+    "node-uuid": "^1.4.3"
+  },
+  "devDependencies": {
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-jasmine": "^2.0.1",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-typescript": "^2.7.8",
+    "jasmine2-matchers": "^1.0.4",
+    "merge2": "^0.3.6",
+    "typescript": "^1.5.0-beta"
+  },
+  "scripts": {
+    "test": "gulp test"
+  },
+  "author": "Jonathan Da Silva <dasilvabastos.jonathan@gmail.com>",
+  "license": "MIT"
+}
