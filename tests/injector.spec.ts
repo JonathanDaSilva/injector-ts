@@ -12,6 +12,14 @@ class Test1 {
     }
 }
 
+@Inject(Test1)
+class Test2 {
+    _test: Test1
+    constructor(test: Test1) {
+        this._test = test
+    }
+}
+
 describe("Injector: ", function() {
     var injector
 
@@ -40,5 +48,11 @@ describe("Injector: ", function() {
     it("get: should return a new instance with the dependencies", function(){
         var test = injector.get(Test1)
         expect(test._bar).toBeAnInstanceOf(Bar)
+    })
+
+    it("get: should inject recursively", function(){
+        var test = injector.get(Test2)
+        expect(test._test).toBeAnInstanceOf(Test1)
+        expect(test._test._bar).toBeAnInstanceOf(Bar)
     })
 })
