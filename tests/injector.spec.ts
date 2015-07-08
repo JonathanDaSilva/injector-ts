@@ -4,6 +4,14 @@ import Injector from './../src/Injector'
 
 class Bar {}
 
+@Inject(Bar)
+class Test {
+    _bar: Bar
+    constructor(bar) {
+        this._bar = bar
+    }
+}
+
 describe("Injector: ", function() {
     var injector
 
@@ -27,5 +35,10 @@ describe("Injector: ", function() {
         expect(bar1.__id).toBeAString()
         expect(bar2.__id).toBeAString()
         expect(bar1.__id).not.toBe(bar2.__id)
+    })
+
+    it("get: should return a new instance with the dependencies", function(){
+        var test = injector.get(Test)
+        expect(test._bar).toBeAnInstanceOf(Bar)
     })
 })
