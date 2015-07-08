@@ -1,5 +1,6 @@
 var gulp     = require('gulp')
 var merge    = require('merge2')
+var del      = require('del')
 var $        = require('gulp-load-plugins')()
 
 gulp.task('default', function(cb) {
@@ -27,4 +28,11 @@ gulp.task('test', ['default'], function(cb) {
     'lib/tests/*.js',
     'lib/tests/**/*.js',
   ]).pipe($.jasmine())
+})
+
+gulp.task('clean', function(cb){
+  del([
+    'definition',
+    'lib',
+  ], cb)
 })
