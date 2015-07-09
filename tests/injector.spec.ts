@@ -112,4 +112,13 @@ describe("Injector: ", function() {
 
         expect(bar1).toBe(bar2)
     })
+
+    it("can set a specific class to singleton", function() {
+        injector.singleton(Bar)
+        var bar1 = injector.get(Bar)
+        var bar2 = injector.get(Bar)
+
+        expect(bar1.__id).toBe('__singleton')
+        expect(bar1).toBe(bar2)
+    })
 })
