@@ -105,4 +105,11 @@ describe("Injector: ", function() {
         var test = injector.get(Test3)
         expect(test._foo).toBeAnInstanceOf(FooMock)
     })
+
+    it("can get an object with a specific id", function() {
+        var bar1 = injector.get(Bar)
+        var bar2 = injector.get(Bar, bar1.__id)
+
+        expect(bar1).toBe(bar2)
+    })
 })
