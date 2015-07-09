@@ -2,7 +2,7 @@
   "repos": [
     {
       "url": "https://github.com/borisyankov/DefinitelyTyped.git",
-      "ref": "f0aa5507070dc74859b636bd2dac37f3e8cab8d1"
+      "ref": "master"
     }
   ],
   "path": "typings",

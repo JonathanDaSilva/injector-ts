@@ -20,6 +20,23 @@ class Test2 {
     }
 }
 
+interface FooInterface {
+    test();
+}
+
+class Foo implements FooInterface {
+    test() {
+    }
+}
+
+@Inject('FooInterface')
+class Test3 {
+    _foo: FooInterface
+    constructor(foo: FooInterface) {
+        this._foo = foo
+    }
+}
+
 describe("Injector: ", function() {
     var injector
 
@@ -54,5 +71,18 @@ describe("Injector: ", function() {
         var test = injector.get(Test2)
         expect(test._test).toBeAnInstanceOf(Test1)
         expect(test._test._bar).toBeAnInstanceOf(Bar)
+    })
+
+    it("should be able to inject with string id", function() {
+        injector.register('FooInterface', Foo)
+        var test = injector.get(Test3)
+        expect(test._foo).toBeAnInstanceOf(Foo)
+    })
+
+    it("can't register two time on the same id", function() {
+        expect(function(){
+            injector.register('FooInterface', Foo)
+            injector.register('FooInterface', Bar)
+        }).toThrowAnError('InjectorRegisterError')
     })
 })
