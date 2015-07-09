@@ -27,17 +27,17 @@ describe("Injector: ", function() {
         injector = new Injector()
     })
 
-    it("get: should return an instance of bar", function() {
+    it("should return an instance of bar", function() {
         expect(injector.get(Bar)).toBeAnInstanceOf(Bar)
     })
 
-    it("get: should return a new instance everytime", function() {
+    it("should return a new instance everytime", function() {
         var bar1 = injector.get(Bar)
         var bar2 = injector.get(Bar)
         expect(bar1).not.toBe(bar2)
     })
 
-    it("get: should return a new instance everytime", function() {
+    it("should put a new id on every object", function() {
         var bar1 = injector.get(Bar)
         var bar2 = injector.get(Bar)
         expect(bar1.__id).toBeAString()
@@ -45,12 +45,12 @@ describe("Injector: ", function() {
         expect(bar1.__id).not.toBe(bar2.__id)
     })
 
-    it("get: should return a new instance with the dependencies", function(){
+    it("should return a new instance with the dependencies", function(){
         var test = injector.get(Test1)
         expect(test._bar).toBeAnInstanceOf(Bar)
     })
 
-    it("get: should inject recursively", function(){
+    it("should inject recursively", function(){
         var test = injector.get(Test2)
         expect(test._test).toBeAnInstanceOf(Test1)
         expect(test._test._bar).toBeAnInstanceOf(Bar)
