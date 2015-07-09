@@ -29,6 +29,11 @@ class Foo implements FooInterface {
     }
 }
 
+class FooMock implements FooInterface {
+    test() {
+    }
+}
+
 @Inject('FooInterface')
 class Test3 {
     _foo: FooInterface
@@ -73,6 +78,11 @@ describe("Injector: ", function() {
         expect(test._test._bar).toBeAnInstanceOf(Bar)
     })
 
+    it("should be able to return a register interface", function(){
+        injector.register('FooInterface', Foo)
+        expect(injector.get('FooInterface')).toBeAnInstanceOf(Foo)
+    })
+
     it("should be able to inject with string id", function() {
         injector.register('FooInterface', Foo)
         var test = injector.get(Test3)
@@ -84,5 +94,15 @@ describe("Injector: ", function() {
             injector.register('FooInterface', Foo)
             injector.register('FooInterface', Bar)
         }).toThrowAnError('InjectorRegisterError')
+    })
+
+    it("can't register an object for mocking", function() {
+        injector.register('FooInterface', Foo)
+        injector.register(Foo, FooMock)
+
+        expect(injector.get('FooInterface')).toBeAnInstanceOf(FooMock)
+
+        var test = injector.get(Test3)
+        expect(test._foo).toBeAnInstanceOf(FooMock)
     })
 })

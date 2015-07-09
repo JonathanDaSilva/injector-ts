@@ -10,14 +10,14 @@ export default class Injector {
     }
 
     get(klass): Object {
+        // Get from register
+        if(this._isInRegister(klass)) {
+            klass = this._getRegistred(klass)
+            return this.get(klass)
+        }
         // Create Dependencies
         var deps = []
         for(var dep of klass.__dependencies || []) {
-            // Get from register
-            if(typeof dep === 'string') {
-                dep = this._getRegistred(dep)
-            }
-
             deps.push(this.get(dep))
         }
         // Create instance
@@ -29,8 +29,12 @@ export default class Injector {
         return inst
     }
 
-    register(id: string, klass: Function): void {
-        if(this._register.has(id)) {
+    _isInRegister(id: string|Function) {
+        return this._register.has(id)
+    }
+
+    register(id: string|Function, klass: Function): void {
+        if(this._isInRegister(id)) {
             throw new InjectorRegisterError()
         }
         this._register.set(id, klass)
