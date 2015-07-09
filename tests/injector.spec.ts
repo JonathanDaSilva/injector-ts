@@ -96,7 +96,7 @@ describe("Injector: ", function() {
         }).toThrowAnError('InjectorRegisterError')
     })
 
-    it("can't register an object for mocking", function() {
+    it("can register an object for mocking", function() {
         injector.register('FooInterface', Foo)
         injector.register(Foo, FooMock)
 
