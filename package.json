@@ -1,5 +1,5 @@
 {
-  "name": "injector",
+  "name": "injector.ts",
   "version": "0.0.1",
   "description": "An injector",
   "main": "lib/src/index.js",
