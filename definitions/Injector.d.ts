@@ -1,5 +1,5 @@
 /// <reference path="../typings/bundle.d.ts" />
-export default class Injector {
+export declare class Injector {
     private _register;
     private _storage;
     private _singleton;

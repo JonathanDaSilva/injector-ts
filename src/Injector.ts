@@ -1,8 +1,8 @@
 /// <reference path="./../typings/bundle.d.ts"/>
 import * as uuid             from 'node-uuid'
-import InjectorRegisterError from './InjectorRegisterError'
+import {InjectorRegisterError} from './InjectorRegisterError'
 
-export default class Injector {
+export class Injector {
     private _register  = new Map<Function|string, Function>()
     private _storage   = new Map<Function, Map<string, Object>>()
     private _singleton = new Set<Function>()

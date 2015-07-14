@@ -1,6 +1,6 @@
 /// <reference path="./../typings/bundle.d.ts"/>
-import Inject   from './../src/Inject'
-import Injector from './../src/Injector'
+import {Inject}   from './../src/Inject'
+import {Injector} from './../src/Injector'
 
 class Bar {}
 

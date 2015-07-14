@@ -1,4 +1,4 @@
-export default class InjectorRegisterError implements Error {
+export class InjectorRegisterError implements Error {
     name: string
     message: string
     constructor() {

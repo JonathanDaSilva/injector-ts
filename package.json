@@ -16,6 +16,10 @@
     "merge2": "^0.3.6",
     "typescript": "^1.5.0-beta"
   },
+  "index": "./lib/src/index.js",
+  "typescript": {
+    "definition": "./definitions/index.d.ts"
+  },
   "scripts": {
     "test": "gulp test"
   },

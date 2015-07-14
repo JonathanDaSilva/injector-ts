@@ -3,7 +3,19 @@ var merge    = require('merge2')
 var del      = require('del')
 var $        = require('gulp-load-plugins')()
 
-gulp.task('default', function(cb) {
+gulp.task('default', ['move'], function(cb){
+  del([
+    'definitions/src',
+    'definitions/tests',
+  ], cb)
+})
+
+gulp.task('move', ['compile'], function(cb){
+  return gulp.src('./definitions/src/*.d.ts')
+    .pipe(gulp.dest('./definitions/'))
+})
+
+gulp.task('compile', ['clean'], function(cb) {
   var result = gulp.src([
     '**/*.ts',
     '!node_modules/**/*.ts',
@@ -32,7 +44,8 @@ gulp.task('test', ['default'], function(cb) {
 
 gulp.task('clean', function(cb){
   del([
-    'definition',
+    'definitions',
     'lib',
   ], cb)
 })
+
