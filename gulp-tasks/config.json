@@ -1,0 +1,23 @@
+{
+  "out": "./build",
+  "test": {
+    "in": [
+      "./build/tests/**/*.js",
+      "./build/tests/*.js"
+    ]
+  },
+  "typescript": {
+    "in": [
+      "./typings/*.d.ts",
+      "./tests/**/*.ts",
+      "./tests/*.ts",
+      "./src/**/*.ts",
+      "./src/*.ts"
+    ],
+    "definition": "./build/definitions"
+  },
+  "tsd": {
+    "command": "reinstall",
+    "config": "./tsd.json"
+  }
+}

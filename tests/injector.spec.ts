@@ -1,12 +1,15 @@
-/// <reference path="./../typings/bundle.d.ts"/>
-import {Inject}   from './../src/Inject'
-import {Injector} from './../src/Injector'
+import * as chai from 'chai'
+var expect = chai.expect
+
+import {Singleton} from './../src/Singleton'
+import {Inject}    from './../src/Inject'
+import {Injector}  from './../src/Injector'
 
 class Bar {}
 
 @Inject(Bar)
 class Test1 {
-    _bar: Bar
+    public _bar: Bar
     constructor(bar: Bar) {
         this._bar = bar
     }
@@ -14,7 +17,7 @@ class Test1 {
 
 @Inject(Test1)
 class Test2 {
-    _test: Test1
+    public _test: Test1
     constructor(test: Test1) {
         this._test = test
     }
@@ -36,11 +39,14 @@ class FooMock implements FooInterface {
 
 @Inject('FooInterface')
 class Test3 {
-    _foo: FooInterface
+    public _foo: FooInterface
     constructor(foo: FooInterface) {
         this._foo = foo
     }
 }
+
+@Singleton()
+class FooSingleton { }
 
 describe("Injector: ", function() {
     var injector
@@ -50,75 +56,66 @@ describe("Injector: ", function() {
     })
 
     it("should return an instance of bar", function() {
-        expect(injector.get(Bar)).toBeAnInstanceOf(Bar)
+        expect(injector.get(Bar)).instanceof(Bar)
     })
 
     it("should return a new instance everytime", function() {
         var bar1 = injector.get(Bar)
         var bar2 = injector.get(Bar)
-        expect(bar1).not.toBe(bar2)
-    })
-
-    it("should put a new id on every object", function() {
-        var bar1 = injector.get(Bar)
-        var bar2 = injector.get(Bar)
-        expect(bar1.__id).toBeAString()
-        expect(bar2.__id).toBeAString()
-        expect(bar1.__id).not.toBe(bar2.__id)
+        expect(bar1).not.to.equal(bar2)
     })
 
     it("should return a new instance with the dependencies", function(){
         var test = injector.get(Test1)
-        expect(test._bar).toBeAnInstanceOf(Bar)
+        expect(test._bar).instanceof(Bar)
     })
 
     it("should inject recursively", function(){
         var test = injector.get(Test2)
-        expect(test._test).toBeAnInstanceOf(Test1)
-        expect(test._test._bar).toBeAnInstanceOf(Bar)
+        expect(test._test).instanceof(Test1)
+        expect(test._test._bar).instanceof(Bar)
     })
 
     it("should be able to return a register interface", function(){
-        injector.register('FooInterface', Foo)
-        expect(injector.get('FooInterface')).toBeAnInstanceOf(Foo)
+        injector.default('FooInterface', Foo)
+        expect(injector.get('FooInterface')).instanceof(Foo)
     })
 
     it("should be able to inject with string id", function() {
-        injector.register('FooInterface', Foo)
+        injector.default('FooInterface', Foo)
         var test = injector.get(Test3)
-        expect(test._foo).toBeAnInstanceOf(Foo)
-    })
-
-    it("can't register two time on the same id", function() {
-        expect(function(){
-            injector.register('FooInterface', Foo)
-            injector.register('FooInterface', Bar)
-        }).toThrowAnError('InjectorRegisterError')
-    })
-
-    it("can register an object for mocking", function() {
-        injector.register('FooInterface', Foo)
-        injector.register(Foo, FooMock)
-
-        expect(injector.get('FooInterface')).toBeAnInstanceOf(FooMock)
-
-        var test = injector.get(Test3)
-        expect(test._foo).toBeAnInstanceOf(FooMock)
-    })
-
-    it("can get an object with a specific id", function() {
-        var bar1 = injector.get(Bar)
-        var bar2 = injector.get(Bar, bar1.__id)
-
-        expect(bar1).toBe(bar2)
+        expect(test._foo).instanceof(Foo)
     })
 
     it("can set a specific class to singleton", function() {
-        injector.singleton(Bar)
-        var bar1 = injector.get(Bar)
-        var bar2 = injector.get(Bar)
+        var foo1 = injector.get(FooSingleton)
+        var foo2 = injector.get(FooSingleton)
 
-        expect(bar1.__id).toBe('__singleton')
-        expect(bar1).toBe(bar2)
+        expect(foo1).to.equal(foo2)
+    })
+
+    it("can give mock", function(){
+        var mock = {}
+        injector.when(Foo).give(mock)
+
+        expect(injector.get(Foo)).to.equal(mock)
+    })
+
+    it("can mock automaticaly dependencies", function(){
+        var mock = {}
+        Injector.setMocker(function() { return mock })
+
+        injector.mockDependencies(Test1)
+        var inst = injector.get(Test1)
+        expect(inst._bar).to.equal(mock)
+    })
+
+    it("can mock automaticaly interface dependencies", function(){
+        Injector.setMocker(function(klass) { return typeof klass })
+
+        injector.default('FooInterface', Foo)
+        injector.mockDependencies(Test3)
+        var inst = injector.get(Test3)
+        expect(inst._foo).to.equal('function')
     })
 })

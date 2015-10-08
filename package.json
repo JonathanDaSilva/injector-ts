@@ -1,27 +1,79 @@
 {
-  "name": "injector.ts",
-  "version": "0.0.2",
+  "_args": [
+    [
+      "injector.ts",
+      "C:\\Users\\dasil\\Programmation\\LIFT\\app"
+    ]
+  ],
+  "_from": "injector.ts@*",
+  "_id": "injector.ts@1.0.0",
+  "_inCache": true,
+  "_location": "/injector.ts",
+  "_nodeVersion": "4.1.1",
+  "_npmUser": {
+    "email": "dasilvabastos.jonathan@gmail.com",
+    "name": "jonathandasilva"
+  },
+  "_npmVersion": "3.3.5",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "injector.ts",
+    "raw": "injector.ts",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "*",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_shasum": "3d46aa85da8dc088b13b5f385e23a4ed9a3b3988",
+  "_shrinkwrap": null,
+  "_spec": "injector.ts",
+  "_where": "C:\\Users\\dasil\\Programmation\\LIFT\\app",
+  "author": {
+    "email": "dasilvabastos.jonathan@gmail.com",
+    "name": "Jonathan Da Silva"
+  },
+  "dependencies": {},
   "description": "An injector",
-  "main": "lib/src/index.js",
-  "dependencies": {
-    "node-uuid": "^1.4.3"
-  },
   "devDependencies": {
-    "del": "^1.2.0",
+    "chai": "^3.3.0",
+    "del": "^2.0.2",
     "gulp": "^3.9.0",
-    "gulp-jasmine": "^2.0.1",
-    "gulp-load-plugins": "^0.10.0",
-    "gulp-typescript": "^2.7.8",
-    "jasmine2-matchers": "^1.0.4",
-    "merge2": "^0.3.6",
-    "typescript": "^1.5.0-beta"
+    "gulp-load-plugins": "^1.0.0-rc.1",
+    "gulp-mocha": "^2.1.3",
+    "gulp-replace": "^0.5.4",
+    "gulp-sequence": "^0.4.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-task-listing": "^1.0.1",
+    "gulp-task-loader": "^1.2.3",
+    "gulp-tsd": "0.0.4",
+    "gulp-typescript": "^2.9.2",
+    "merge2": "^0.3.6"
   },
-  "typescript": {
-    "definition": "./definitions/index.d.ts"
+  "directories": {},
+  "dist": {
+    "shasum": "3d46aa85da8dc088b13b5f385e23a4ed9a3b3988",
+    "tarball": "http://registry.npmjs.org/injector.ts/-/injector.ts-1.0.0.tgz"
   },
+  "gitHead": "942f1f7f35b58aa3281f33e57e808eb20ac98079",
+  "installable": true,
+  "license": "MIT",
+  "main": "build/src/index.js",
+  "maintainers": [
+    {
+      "name": "jonathandasilva",
+      "email": "dasilvabastos.jonathan@gmail.com"
+    }
+  ],
+  "name": "injector.ts",
+  "optionalDependencies": {},
   "scripts": {
     "test": "gulp test"
   },
-  "author": "Jonathan Da Silva <dasilvabastos.jonathan@gmail.com>",
-  "license": "MIT"
+  "typescript": {
+    "definition": "./build/definitions/index.d.ts"
+  },
+  "version": "1.0.0"
 }
