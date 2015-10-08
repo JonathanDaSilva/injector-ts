@@ -6,6 +6,7 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalAsyncFunctions": true,
+    "declaration": true,
     "removeComments": true
   },
   "exclude": [

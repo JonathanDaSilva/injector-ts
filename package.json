@@ -73,7 +73,7 @@
     "test": "gulp test"
   },
   "typescript": {
-    "definition": "./build/definitions/index.d.ts"
+    "definition": "./build/definitions/src/index.d.ts"
   },
   "version": "1.0.0"
 }
