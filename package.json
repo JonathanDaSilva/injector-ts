@@ -1,42 +1,9 @@
 {
-  "_args": [
-    [
-      "injector.ts",
-      "C:\\Users\\dasil\\Programmation\\LIFT\\app"
-    ]
-  ],
-  "_from": "injector.ts@*",
-  "_id": "injector.ts@1.0.0",
-  "_inCache": true,
-  "_location": "/injector.ts",
-  "_nodeVersion": "4.1.1",
-  "_npmUser": {
-    "email": "dasilvabastos.jonathan@gmail.com",
-    "name": "jonathandasilva"
-  },
-  "_npmVersion": "3.3.5",
-  "_phantomChildren": {},
-  "_requested": {
-    "name": "injector.ts",
-    "raw": "injector.ts",
-    "rawSpec": "",
-    "scope": null,
-    "spec": "*",
-    "type": "range"
-  },
-  "_requiredBy": [
-    "#USER"
-  ],
-  "_shasum": "3d46aa85da8dc088b13b5f385e23a4ed9a3b3988",
-  "_shrinkwrap": null,
-  "_spec": "injector.ts",
-  "_where": "C:\\Users\\dasil\\Programmation\\LIFT\\app",
-  "author": {
-    "email": "dasilvabastos.jonathan@gmail.com",
-    "name": "Jonathan Da Silva"
-  },
+  "name": "injector-ts",
+  "version": "1.0.7",
+  "description": "DI",
+  "main": "./build/src/index.js",
   "dependencies": {},
-  "description": "An injector",
   "devDependencies": {
     "chai": "^3.3.0",
     "del": "^2.0.2",
@@ -52,28 +19,9 @@
     "gulp-typescript": "^2.9.2",
     "merge2": "^0.3.6"
   },
-  "directories": {},
-  "dist": {
-    "shasum": "3d46aa85da8dc088b13b5f385e23a4ed9a3b3988",
-    "tarball": "http://registry.npmjs.org/injector.ts/-/injector.ts-1.0.0.tgz"
-  },
-  "gitHead": "942f1f7f35b58aa3281f33e57e808eb20ac98079",
-  "installable": true,
-  "license": "MIT",
-  "main": "build/src/index.js",
-  "maintainers": [
-    {
-      "name": "jonathandasilva",
-      "email": "dasilvabastos.jonathan@gmail.com"
-    }
-  ],
-  "name": "injector.ts",
-  "optionalDependencies": {},
-  "scripts": {
-    "test": "gulp test"
-  },
   "typescript": {
     "definition": "./build/definitions/src/index.d.ts"
   },
-  "version": "1.0.0"
+  "author": "Jonathan Da Silva <dasilvabastos.jonathan@gmail.com>",
+  "license": "MIT"
 }

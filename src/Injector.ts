@@ -1,4 +1,4 @@
-interface giveInterface {
+export interface giveInterface {
     give(object): void
 }
 
