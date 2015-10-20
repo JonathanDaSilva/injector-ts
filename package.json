@@ -1,6 +1,6 @@
 {
   "name": "injector-ts",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "DI",
   "main": "./build/src/index.js",
   "dependencies": {},
