@@ -19,9 +19,7 @@
     "gulp-typescript": "^2.9.2",
     "merge2": "^0.3.6"
   },
-  "typescript": {
-    "definition": "./build/definitions/src/index.d.ts"
-  },
+  "typings": "./build/definitions/src/index.d.ts",
   "author": "Jonathan Da Silva <dasilvabastos.jonathan@gmail.com>",
   "license": "MIT"
 }

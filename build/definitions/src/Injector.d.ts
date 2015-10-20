@@ -14,6 +14,5 @@ export declare class Injector {
     private isSingleton(klass);
     private getSingleton(klass);
     private createInstance(klass);
-    private isInRegister(id);
     private getRegistred(klass);
 }

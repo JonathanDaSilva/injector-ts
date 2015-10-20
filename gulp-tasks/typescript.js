@@ -5,7 +5,8 @@ var merge  = require('merge2')
 
 module.exports = function(cb) {
   var tsProject   = $.typescript.createProject('tsconfig.json', {
-    outDir: CONFIG.out
+    outDir: CONFIG.out,
+    declaration: true,
   })
 
   var tsResult = gulp.src(CONFIG.typescript.in)

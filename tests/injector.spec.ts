@@ -70,6 +70,11 @@ describe("Injector: ", function() {
         expect(test._bar).instanceof(Bar)
     })
 
+    it("should inject himself into _injector", function(){
+        var test = injector.get(Test1)
+        expect(test._injector).to.equal(injector)
+    })
+
     it("should inject recursively", function(){
         var test = injector.get(Test2)
         expect(test._test).instanceof(Test1)

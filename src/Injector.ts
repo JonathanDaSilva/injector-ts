@@ -68,14 +68,12 @@ export class Injector {
             deps.push(this.get(dep))
         }
         // Create instance
-        return new (Function.prototype.bind.apply(
+        var instance = new (Function.prototype.bind.apply(
             klass,
             [null].concat(deps)
         ))
-    }
-
-    private isInRegister(id: string): boolean {
-        return this._register.has(id)
+        instance._injector = this
+        return instance
     }
 
     private getRegistred(klass): Function {
