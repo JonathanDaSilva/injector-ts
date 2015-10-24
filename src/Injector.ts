@@ -6,14 +6,14 @@ export class Injector {
     private static _mocker
 
     private _register  = new Map<string, Function>()
-    private _mocks     = new Map<Function, Object>()
-    private _singleton = new Map<Function, Object>()
+    private _mocks     = new Map<Function, any>()
+    private _singleton = new Map<Function, any>()
 
     public static setMocker(mocker) {
         Injector._mocker = mocker
     }
 
-    public get(klass): Object {
+    public get<T>(klass): T {
         // Interface
         klass = this.getRegistred(klass)
         // Mocks
@@ -22,10 +22,10 @@ export class Injector {
         }
         // Singleton
         if(this.isSingleton(klass)) {
-            return this.getSingleton(klass)
+            return this.getSingleton<T>(klass)
         }
         // Instatiate Class
-        return this.createInstance(klass)
+        return this.createInstance<T>(klass)
     }
 
     public default(id: string, klass: Function): void {
@@ -40,7 +40,7 @@ export class Injector {
         }
     }
 
-    public mockDependencies(klass) {
+    public mockDependencies(klass): void {
         for(var dep of klass.__dependencies) {
             dep = this.getRegistred(dep)
             this.when(dep).give(Injector._mocker(dep))
@@ -51,17 +51,17 @@ export class Injector {
         return !!klass.__singleton
     }
 
-    private getSingleton(klass): Object {
+    private getSingleton<T>(klass): T {
         if(this._singleton.has(klass)) {
             return this._singleton.get(klass)
         } else {
-            var inst = this.createInstance(klass)
+            var inst = this.createInstance<T>(klass)
             this._singleton.set(klass, inst)
             return inst
         }
     }
 
-    private createInstance(klass): Object {
+    private createInstance<T>(klass): T {
         // Create Dependencies
         var deps = []
         for(var dep of klass.__dependencies || []) {
